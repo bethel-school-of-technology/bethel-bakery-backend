@@ -6,9 +6,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+//Model to hold product information
 @Entity
 @Table(name="products")
-public class Products {
+public class ProductsModel {
 	
 	//Data fields 
 	@Id

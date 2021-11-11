@@ -6,18 +6,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+//This service has to implimtation of the ProductsControler
 @Service
 public class ProductsService {
+	
+	//Auto creates instance of ProductsRepository
 	@Autowired
 	private ProductsRepository productsRepository;
 	
-	public List<Products> getProducts() {
-		List<Products> allProducts = productsRepository.findAll();
+	//Gets all the Products from SQL
+	public List<ProductsModel> getProducts() {
+		List<ProductsModel> allProducts = productsRepository.findAll();
 		return allProducts;
 	}
 	
-	public ResponseEntity<Products> getProduct(Integer id) {
-        Products foundProduct = productsRepository.findById(id).orElse(null);
+	//Gets product by id from SQL
+	public ResponseEntity<ProductsModel> getProduct(Integer id) {
+        ProductsModel foundProduct = productsRepository.findById(id).orElse(null);
 
         if(foundProduct == null) {
             return ResponseEntity.notFound().header("Product","Nothing found with that id").build();
@@ -25,19 +30,21 @@ public class ProductsService {
         return ResponseEntity.ok(foundProduct);
     }
 	
-	public ResponseEntity<Products> postProduct(Products product) {
+	//Add a new product to SQL
+	public ResponseEntity<ProductsModel> postProduct(ProductsModel product) {
 
         // saving to DB using instance of the repo interface
-       Products updatedProduct = productsRepository.save(product);
+       ProductsModel updatedProduct = productsRepository.save(product);
 
         // RespEntity crafts response to include correct status codes.
         return ResponseEntity.ok(updatedProduct);
     }
 	
-    public ResponseEntity<Products> updateProduct(Integer id, Products product) {
+	//Updates a product by id in SQL
+    public ResponseEntity<ProductsModel> updateProduct(Integer id, ProductsModel product) {
 
     	// saving to DB using instance of the repo interface
-		Products foundProduct = productsRepository.findById(id).orElse(null);
+		ProductsModel foundProduct = productsRepository.findById(id).orElse(null);
         
     	if(foundProduct == null) {
     		return ResponseEntity.notFound().header("Products","Nothing found with that id").build();
@@ -48,14 +55,15 @@ public class ProductsService {
     		foundProduct.setPrice(product.getPrice());
     		foundProduct.setImg_url(product.getImg_url());
     			
-    		Products UpdatedProduct = productsRepository.save(foundProduct);
+    		ProductsModel UpdatedProduct = productsRepository.save(foundProduct);
     		// RespEntity crafts response to include correct status codes.
     		return ResponseEntity.ok(UpdatedProduct);
     	}  
     }
     
-    public ResponseEntity<Products> deleteProduct(Integer id) {
-        Products foundProduct = productsRepository.findById(id).orElse(null);
+    //Deletes the Product by SQL
+    public ResponseEntity<ProductsModel> deleteProduct(Integer id) {
+        ProductsModel foundProduct = productsRepository.findById(id).orElse(null);
 
         if(foundProduct == null) {
             return ResponseEntity.notFound().header("Product","Nothing found with that id").build();
