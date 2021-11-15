@@ -1,4 +1,4 @@
-package com.teamzion.bethelbakery.products;
+package com.teamzion.bethelbakery.controlers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.teamzion.bethelbakery.models.Product;
+import com.teamzion.bethelbakery.services.ProductsService;
+
 @RestController
 public class ProductsControler {
 
@@ -22,32 +25,32 @@ public class ProductsControler {
 	
 	//Api request to get all products
 	@GetMapping("/product")
-	public List<ProductsModel> getAllProducts() {
+	public List<Product> getAllProducts() {
 		return service.getProducts();
 	}
 	
 	//Api request to get products by id
 	@GetMapping("/product/{id}")
-    public ResponseEntity<ProductsModel> getPost(@PathVariable(value="id") Integer id) {
+    public ResponseEntity<Product> getCart(@PathVariable(value="id") Integer id) {
         return service.getProduct(id);
     }
 	
 	//Api request to add a new products
 	@PostMapping("/product")
-    public ResponseEntity<ProductsModel> postPost(@RequestBody ProductsModel product) {
+    public ResponseEntity<Product> postCart(@RequestBody Product product) {
 
         return service.postProduct(product);
     }
 	
 	//Api request to update a product
 	@PutMapping("/product/{id}")
-    public ResponseEntity<ProductsModel> putProduct(@PathVariable(value="id") Integer id, @RequestBody ProductsModel product) {
+    public ResponseEntity<Product> putProduct(@PathVariable(value="id") Integer id, @RequestBody Product product) {
 		return service.updateProduct(id, product);
 	}
 	
 	//Api request to delete a product by id
 	@DeleteMapping("/product/{id}")
-	public ResponseEntity<ProductsModel> deleteUser(@PathVariable(value="id") Integer id) {
+	public ResponseEntity<Product> deleteCart(@PathVariable(value="id") Integer id) {
 		return service.deleteProduct(id);
 	}
 }

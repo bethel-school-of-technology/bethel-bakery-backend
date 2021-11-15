@@ -1,10 +1,13 @@
-package com.teamzion.bethelbakery.products;
+package com.teamzion.bethelbakery.services;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import com.teamzion.bethelbakery.models.Product;
+import com.teamzion.bethelbakery.repositories.ProductsRepository;
 
 //This service has to implimtation of the ProductsControler
 @Service
@@ -15,14 +18,14 @@ public class ProductsService {
 	private ProductsRepository productsRepository;
 	
 	//Gets all the Products from SQL
-	public List<ProductsModel> getProducts() {
-		List<ProductsModel> allProducts = productsRepository.findAll();
+	public List<Product> getProducts() {
+		List<Product> allProducts = productsRepository.findAll();
 		return allProducts;
 	}
 	
 	//Gets product by id from SQL
-	public ResponseEntity<ProductsModel> getProduct(Integer id) {
-        ProductsModel foundProduct = productsRepository.findById(id).orElse(null);
+	public ResponseEntity<Product> getProduct(Integer id) {
+        Product foundProduct = productsRepository.findById(id).orElse(null);
 
         if(foundProduct == null) {
             return ResponseEntity.notFound().header("Product","Nothing found with that id").build();
@@ -31,39 +34,39 @@ public class ProductsService {
     }
 	
 	//Add a new product to SQL
-	public ResponseEntity<ProductsModel> postProduct(ProductsModel product) {
+	public ResponseEntity<Product> postProduct(Product product) {
 
         // saving to DB using instance of the repo interface
-       ProductsModel updatedProduct = productsRepository.save(product);
+       Product updatedProduct = productsRepository.save(product);
 
         // RespEntity crafts response to include correct status codes.
         return ResponseEntity.ok(updatedProduct);
     }
 	
 	//Updates a product by id in SQL
-    public ResponseEntity<ProductsModel> updateProduct(Integer id, ProductsModel product) {
+    public ResponseEntity<Product> updateProduct(Integer id, Product product) {
 
     	// saving to DB using instance of the repo interface
-		ProductsModel foundProduct = productsRepository.findById(id).orElse(null);
+		Product foundProduct = productsRepository.findById(id).orElse(null);
         
     	if(foundProduct == null) {
     		return ResponseEntity.notFound().header("Products","Nothing found with that id").build();
     	}
     	else {
-    		foundProduct.setProduct_id(id);
+    		foundProduct.setProductId(id);
     		foundProduct.setName(product.getName());
     		foundProduct.setPrice(product.getPrice());
-    		foundProduct.setImg_url(product.getImg_url());
+    		foundProduct.setImgUrl(product.getImgUrl());
     			
-    		ProductsModel UpdatedProduct = productsRepository.save(foundProduct);
+    		Product UpdatedProduct = productsRepository.save(foundProduct);
     		// RespEntity crafts response to include correct status codes.
     		return ResponseEntity.ok(UpdatedProduct);
     	}  
     }
     
     //Deletes the Product by SQL
-    public ResponseEntity<ProductsModel> deleteProduct(Integer id) {
-        ProductsModel foundProduct = productsRepository.findById(id).orElse(null);
+    public ResponseEntity<Product> deleteProduct(Integer id) {
+        Product foundProduct = productsRepository.findById(id).orElse(null);
 
         if(foundProduct == null) {
             return ResponseEntity.notFound().header("Product","Nothing found with that id").build();
