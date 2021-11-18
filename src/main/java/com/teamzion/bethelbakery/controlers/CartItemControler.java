@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,7 @@ public class CartItemControler {
 		private CartItemService cartservice;
 		
 		//Adds Item to Cart
+		@CrossOrigin
 		@PostMapping("cart/add/{pid}/{qty}")
 		public ResponseEntity<CartItem> addProductToCart(@PathVariable(value = "pid") Integer productId, 
 				@PathVariable(value = "qty") Integer quantity) {
@@ -33,10 +35,13 @@ public class CartItemControler {
 			
 		}
 		
-		//TODO Give Total amount of Items in cart.
+		
 		//Gives Total amount of Items in cart
-		@GetMapping("cart/totalincart")
-		public Integer totalInCart() {
-			return  cartservice.totalItemsInCart();
+		
+		
+		@CrossOrigin
+		@GetMapping("cart")
+		public List<CartItem> getCartItem() {
+			return cartservice.totalItemsInCart();
 		}
 }

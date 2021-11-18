@@ -56,10 +56,10 @@ public class CartItemService {
 	
 	//TODO Total items in cart.
 	//Gives total number of Items in cart
-	public Integer totalItemsInCart() {
+	public List<CartItem> totalItemsInCart() {
 		List<CartItem> cartItemList = cartRepository.findAll();
+		return cartItemList;
 		
-		return cartItemList.size();
 	}
 	
 	//Finds the cartItem by the productId
