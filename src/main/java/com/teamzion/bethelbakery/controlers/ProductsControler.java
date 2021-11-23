@@ -32,28 +32,4 @@ public class ProductsControler {
 		return service.getProducts();
 	}
 	
-	//Api request to get products by id
-	@GetMapping("/product/{id}")
-    public ResponseEntity<Product> getCart(@PathVariable(value="id") Integer id) {
-        return service.getProduct(id);
-    }
-	
-	//Api request to add a new products
-	@PostMapping("/product")
-    public ResponseEntity<Product> postCart(@RequestBody Product product) {
-
-        return service.postProduct(product);
-    }
-	
-	//Api request to update a product
-	@PutMapping("/product/{id}")
-    public ResponseEntity<Product> putProduct(@PathVariable(value="id") Integer id, @RequestBody Product product) {
-		return service.updateProduct(id, product);
-	}
-	
-	//Api request to delete a product by id
-	@DeleteMapping("/product/{id}")
-	public ResponseEntity<Product> deleteCart(@PathVariable(value="id") Integer id) {
-		return service.deleteProduct(id);
-	}
 }
