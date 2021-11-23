@@ -21,27 +21,27 @@ import com.teamzion.bethelbakery.services.ProductsService;
 @RestController
 public class CartItemControler {
 		
-		//Auto creates instance of CartService
-		@Autowired
-		private CartItemService cartservice;
-		
-		//Adds Item to Cart
-		@CrossOrigin
-		@PostMapping("cart/add/{pid}/{qty}")
-		public ResponseEntity<CartItem> addProductToCart(@PathVariable(value = "pid") Integer productId, 
-				@PathVariable(value = "qty") Integer quantity) {
-			
-			return cartservice.addProduct(productId, quantity);
-			
-		}
-		
-		
-		//Gives Total amount of Items in cart
-		
-		
-		@CrossOrigin
-		@GetMapping("cart")
-		public List<CartItem> getCartItem() {
-			return cartservice.totalItemsInCart();
-		}
+//		//Auto creates instance of CartService
+//		@Autowired
+//		private CartItemService cartservice;
+//		
+//		//Adds Item to Cart
+//		@CrossOrigin
+//		@PostMapping("cart/add/{pid}/{qty}")
+//		public ResponseEntity<CartItem> addProductToCart(@PathVariable(value = "pid") Integer productId, 
+//				@PathVariable(value = "qty") Integer quantity) {
+//			
+//			return cartservice.addProduct(productId, quantity);
+//			
+//		}
+//		
+//		
+//		//Gives Total amount of Items in cart
+//		
+//		
+//		@CrossOrigin
+//		@GetMapping("cart")
+//		public List<CartItem> getCartItem() {
+//			return cartservice.totalItemsInCart();
+//		}
 }
