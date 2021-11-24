@@ -5,8 +5,12 @@ import org.springframework.stereotype.Repository;
 
 import com.teamzion.bethelbakery.models.Product;
 
-//ProductsRepository to make the connection to SQL easier
-@Repository
-public interface ProductsRepository extends JpaRepository<Product, Integer>{
+//*******************
+//*ProductRepository*
+//*******************
 
-}
+//Repository to handle CRUD function for products
+@Repository
+public interface ProductRepository extends JpaRepository<Product, Integer>{
+
+}//End interface

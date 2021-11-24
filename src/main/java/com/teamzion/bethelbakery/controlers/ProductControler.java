@@ -17,19 +17,30 @@ import org.springframework.web.bind.annotation.RestController;
 import com.teamzion.bethelbakery.models.Product;
 import com.teamzion.bethelbakery.services.ProductsService;
 
+//******************
+//*ProductControler*
+//******************
 
+//Controls the mapping of products API
 @RestController
-public class ProductsControler {
+public class ProductControler {
 
-	//Auto creates instance of ProductsService
+	//*************
+	//*Data Fields*
+	//*************
 	@Autowired
 	private ProductsService service;
 	
-	//Api request to get all products
+	
+	//*********
+	//*Methods*
+	//*********
+	
+	//Get request to get all products
 	@CrossOrigin
 	@GetMapping("/product")
 	public List<Product> getAllProducts() {
 		return service.getProducts();
-	}
+	}//End method
 	
-}
+}//End Class

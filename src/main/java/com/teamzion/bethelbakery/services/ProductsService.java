@@ -7,20 +7,31 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.teamzion.bethelbakery.models.Product;
-import com.teamzion.bethelbakery.repositories.ProductsRepository;
+import com.teamzion.bethelbakery.repositories.ProductRepository;
+//*****************
+//*ProductsService*
+//*****************
 
-//This service has to implimtation of the ProductsControler
+//Implementation for products
 @Service
 public class ProductsService {
 	
-	//Auto creates instance of ProductsRepository
-	@Autowired
-	private ProductsRepository productsRepository;
+	//*************
+	//*Data Fields*
+	//*************
 	
-	//Gets all the Products from SQL
+	@Autowired
+	private ProductRepository productsRepository;
+	
+	
+	//*********
+	//*Methods*
+	//*********
+	
+	//Gets all the Products 
 	public List<Product> getProducts() {
 		List<Product> allProducts = productsRepository.findAll();
 		return allProducts;
-	}
+	}//End method
     
-}
+}//End Class

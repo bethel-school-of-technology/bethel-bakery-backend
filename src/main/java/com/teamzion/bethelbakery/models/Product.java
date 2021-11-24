@@ -7,17 +7,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+//*********
+//*Product*
+//*********
 
-//Model to hold product information
+//Model for products
 @Entity
 @Table(name="products")
 public class Product {
 	
-	//Data fields 
+	//*************
+	//*Data fields*
+	//*************
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "product_id")
@@ -30,61 +33,61 @@ public class Product {
 	private String imgUrl;
 	
 	
-	@OneToMany(mappedBy = "product")
-	@JsonManagedReference
-	private List<CartItem> cartItem;
-	 
-	//Constructor
+	//*************
+	//*Constructor*
+	//*************
 	public Product() {}
 	
 	public Product(String name, double price, String imgUrl, List<CartItem> cartItem) {
 		this.name = name;
 		this.price = price;
 		this.imgUrl = imgUrl;
-		this.cartItem = cartItem;
-	}
+	}//End Constructor
 
-	//Getters and Setters
+	
+	//*********
+	//*Methods*
+	//*********
+	
+	//Getter for name
 	public String getName() {
 		return name;
-	}
+	}//End method
 
+	//Setter for name
 	public void setName(String name) {
 		this.name = name;
-	}
+	}//End method
 
+	//Getter for price
 	public double getPrice() {
 		return price;
-	}
+	}//End method
 
+	//Setter for price
 	public void setPrice(double price) {
 		this.price = price;
-	}
+	}//End method
 
+	//Getter for imgUrl
 	public String getImgUrl() {
 		return imgUrl;
-	}
+	}//End method
 
+	//Setter for imgUrl
 	public void setImgUrl(String imgUrl) {
 		this.imgUrl = imgUrl;
-	}
+	}//End method
 
-	public List<CartItem> getCartItem() {
-		return cartItem;
-	}
-
-	public void setCartItem(List<CartItem> cartItem) {
-		this.cartItem = cartItem;
-	}
-
+	//Getter for id
 	public int getId() {
 		return id;
-	}
+	}//End method
 
 	//To String
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", name=" + name + ", price=" + price + ", imgUrl=" + imgUrl + ", cartItem="
-				+ cartItem + "]";
-	}
-}
+		return "Product [id=" + id + ", name=" + name + ", price=" + price + ", imgUrl=" + imgUrl + "]";
+	}//End method
+	
+}//End class
