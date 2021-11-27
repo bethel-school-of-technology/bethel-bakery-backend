@@ -73,7 +73,7 @@ public class CartItemService {
 			cartRepository.delete(foundCartItem);
 		}//End else 
 		
-		return ResponseEntity.ok().build();
+		return ResponseEntity.ok(foundCartItem);
 		
 	}//End method
 	
