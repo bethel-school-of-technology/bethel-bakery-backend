@@ -33,8 +33,8 @@ public class Order {
 	private int id;
 	
 	@ManyToOne
-	@JoinColumn(name="fk_customer_id")
-	private Customer customer;
+	@JoinColumn(name="user_id")
+	private User user;
 	
 	@OneToMany()
 	@JoinColumn(name = "order_id")
@@ -74,20 +74,23 @@ public class Order {
 	private String dateTimeStamp;
 	
 	
+	
 	//**************
 	//*Constructors*
 	//**************
 	
 	public Order() {}
-
-	public Order(Customer customer, List<CartItem> cartItems, String firstName, String lastName, String email,
-			String address, String creditCardNumber, String expiration, int ccv, double subTotal, double total,
-			String dateTimeStamp, String phoneNumber) {
-		this.customer = customer;
+	
+	public Order(int id, User user, List<CartItem> cartItems, String firstName, String lastName, String email,
+			String phoneNumber, String address, String creditCardNumber, String expiration, int ccv, double subTotal,
+			double total, String dateTimeStamp) {
+		this.id = id;
+		this.user = user;
 		this.cartItems = cartItems;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
+		this.phoneNumber = phoneNumber;
 		this.address = address;
 		this.creditCardNumber = creditCardNumber;
 		this.expiration = expiration;
@@ -95,28 +98,28 @@ public class Order {
 		this.subTotal = subTotal;
 		this.total = total;
 		this.dateTimeStamp = dateTimeStamp;
-		this.phoneNumber = phoneNumber;
 	}
 
-	
 	//*********
 	//*Methods*
 	//*********
-	
-	//Getter for customer
-	public Customer getCustomer() {
-		return customer;
-	}//End method
-
-	//Setter for Customer
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}//End method
 
 	//Getter for cartItems
 	public List<CartItem> getCartItems() {
 		return cartItems;
 	}//End method
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	//Setter for cartItems
 	public void setCartItems(List<CartItem> cartItems) {
@@ -238,13 +241,6 @@ public class Order {
 		this.phoneNumber = phoneNumber;
 	}//End method
 
-	//ToString Method
-	@Override
-	public String toString() {
-		return "Order [id=" + id + ", customer=" + customer + ", cartItems=" + cartItems + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", email=" + email + ", address=" + address + ", creditCardNumber="
-				+ creditCardNumber + ", expiration=" + expiration + ", ccv=" + ccv + ", subTotal=" + subTotal
-				+ ", total=" + total + ", dateTimeStamp=" + dateTimeStamp + "]";
-	}//End method
+	
 
 }//End class

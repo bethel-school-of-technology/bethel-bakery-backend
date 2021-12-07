@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,6 +35,7 @@ public class OrderControler {
 	//Get request to get all of the orders 
 	@CrossOrigin
 	@GetMapping("/order")
+	@PreAuthorize("hasRole('Admin')")
 	public List<Order> getAllOrders(){
 		return orderService.getAllOrders();
 		
@@ -42,6 +44,7 @@ public class OrderControler {
 	//Post request to add a new order
 	@CrossOrigin
 	@PostMapping("/order")
+	@PreAuthorize("hasAnyRole('Admin', 'User')")
 	public ResponseEntity<Order> addNewOrder(@RequestBody Order order){
 		return orderService.addNewOrder(order);
 	}//End method

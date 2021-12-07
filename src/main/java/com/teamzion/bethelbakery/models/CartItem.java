@@ -41,29 +41,44 @@ public class CartItem {
 	private double subTotal;
 	
 	@ManyToOne
-	@JoinColumn(name="customer_id")
-	private Customer customer;
+	@JoinColumn(name="user_id")
+	private User user;
 
 	//**************
 	//*Constructors*
 	//**************
 	public CartItem() {}
-
-	public CartItem(Product product, int productQuantity, double subTotal, Customer customer) {
+	
+	public CartItem(int id, Product product, int productQuantity, double subTotal, User user) {
+		super();
+		this.id = id;
 		this.product = product;
 		this.productQuantity = productQuantity;
 		this.subTotal = subTotal;
-		this.customer = customer;
+		this.user = user;
 	}
-	
+
 	//*********
 	//*Methods*
 	//*********
 
+	
 	//Getter for product
 	public Product getProduct() {
 		return product;
 	}//End method
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	//Setter for product
 	public void setProduct(Product product) {
@@ -90,26 +105,9 @@ public class CartItem {
 		this.subTotal = subTotal;
 	}//End method
 
-	//Getter for customer
-	public Customer getCustomer() {
-		return customer;
-	}//End method
-
-	//Setter for customer
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}//End method
-
 	//Getter for id
 	public int getId() {
 		return id;
-	}//End method
-
-	//To String for debugging
-	@Override
-	public String toString() {
-		return "CartItem [id=" + id + ", product=" + product + ", productQuantity=" + productQuantity + ", subTotal="
-				+ subTotal + ", customer="+ customer + "]";
 	}//End method
 
 }//End Class
