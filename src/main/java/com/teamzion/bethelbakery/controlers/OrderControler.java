@@ -3,10 +3,12 @@ package com.teamzion.bethelbakery.controlers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -48,5 +50,12 @@ public class OrderControler {
 	public ResponseEntity<Order> addNewOrder(@RequestBody Order order){
 		return orderService.addNewOrder(order);
 	}//End method
+	
+	//Get Order by id
+	@GetMapping("/order/{id}")
+	@PreAuthorize("hasRole('Admin')")
+	public ResponseEntity<Order> getOrderById(@PathVariable(value = "id") int id){
+		return orderService.getOrderById(id);
+	}
 	
 }//End Class
